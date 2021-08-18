@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testapp-deployment
+  labels:
+    app: testapp
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: testapp
+  template:
+    metadata:
+      labels:
+        app: testapp
+    spec:
+      containers:
+        - name: testapp
+          image: image-registry.openshift-image-registry.svc:5000/wso2-test/traceapp:1.1.1
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /testapp/actuator/health/liveness
+              port: 8080
+            failureThreshold: 3
+            successThreshold: 1
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /testapp/actuator/health/readiness
+              port: 8080
+            failureThreshold: 3
+            successThreshold: 1
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /home/app/config
+              name: application-config
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: testapp-configmap
+          name: application-config
