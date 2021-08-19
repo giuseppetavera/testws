@@ -2,16 +2,16 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   labels:
-    app: testapp
-  name: testapp-route
+    app: testws
+  name: testws-route
 spec:
-  host: testapp-test.apps.os4.insiel.it
+  host: testws-test.apps.os4.insiel.it
   port:
     targetPort: 8080
   tls:
     termination: edge
   to:
     kind: Service
-    name: testapp-service
+    name: testws-service
     weight: 100
   wildcardPolicy: None

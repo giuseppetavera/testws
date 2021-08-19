@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: traceapp-service
+  name: testws-service
 spec:
   selector:
-    app: traceapp
+    app: testws
   ports:
     - protocol: TCP
       port: 8080

@@ -10,7 +10,7 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "*")
 @RestController
 @Slf4j
-public class TestAppController {
+public class TestWsController {
 
     @PostMapping(value = "/access", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
