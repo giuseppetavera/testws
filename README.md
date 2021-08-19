@@ -6,7 +6,7 @@
 
 ## Build immagine Docker
 
-    docker image build -t traceapp:0.0.1 .
+    docker image build -t traceapp:1.0.0 .
 
 ## Test servizio
 
